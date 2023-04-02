@@ -10,7 +10,7 @@ pipeline {
       when{
         changeset "**/result/**"
       }
-      steps{                                                                                                            2
+      steps{
             echo 'Compiling result app..'
             dir('worker'){
               sh 'npm install'
