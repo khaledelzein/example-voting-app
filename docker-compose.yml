@@ -1,0 +1,11 @@
+services:
+  vote:
+    image: kandouda/vote:latest
+    ports:
+      - 5000:80
+  result:
+    image: kandouda/result:latest
+    ports:
+      - 5001:4000
+  worker:
+    image: kandouda/worker:latest
