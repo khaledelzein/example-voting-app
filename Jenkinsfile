@@ -53,7 +53,6 @@ pipeline {
 
       }
       when {
-        branch 'master'
         changeset '**/worker/**'
       }
       steps {
@@ -68,9 +67,6 @@ pipeline {
 
     stage('worker-docker-package') {
       agent any
-      when {
-        branch 'origin/master'
-      }
       steps {
         echo 'Packaging worker app with docker'
         script {
@@ -126,9 +122,6 @@ pipeline {
 
     stage('result-docker-package') {
       agent any
-      when {
-        branch 'origin/master'
-      }
       steps {
         echo 'Packaging result app with docker'
         script {
@@ -187,8 +180,7 @@ pipeline {
     agent any 
     when{ 
       changeset "**/vote/**" 
-      branch 'master' 
-    } 
+    }
     steps{ 
       echo 'Running Integration Tests on vote app' 
       dir('vote'){ 
@@ -202,7 +194,6 @@ pipeline {
       agent any
       steps {
         echo 'Packaging vote app with docker'
-        echo 'Branch name ...' + BRANCH_NAME
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
             // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
@@ -219,9 +210,6 @@ pipeline {
 
     stage('deploy to dev') {
       agent any
-      when {
-        branch 'origin/master'
-      }
       steps {
         echo 'Deploy instavote app with docker compose'
         sh 'docker-compose up -d'
