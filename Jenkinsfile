@@ -201,7 +201,7 @@ pipeline {
     stage('vote-docker-package') {
       agent any
       steps {
-        echo 'Packaging vote app with docker'#
+        echo 'Packaging vote app with docker'
         echo 'Branch name ...' + env.BRANCH_NAME
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
