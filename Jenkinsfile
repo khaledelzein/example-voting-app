@@ -69,8 +69,7 @@ pipeline {
     stage('worker-docker-package') {
       agent any
       when {
-        changeset '**/worker/**'
-        branch 'master'
+        branch 'origin/master'
       }
       steps {
         echo 'Packaging worker app with docker'
@@ -128,8 +127,7 @@ pipeline {
     stage('result-docker-package') {
       agent any
       when {
-        changeset '**/result/**'
-        branch 'master'
+        branch 'origin/master'
       }
       steps {
         echo 'Packaging result app with docker'
@@ -221,7 +219,7 @@ pipeline {
     stage('deploy to dev') {
       agent any
       when {
-        branch 'master'
+        branch 'origin/master'
       }
       steps {
         echo 'Deploy instavote app with docker compose'
